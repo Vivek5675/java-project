@@ -1,6 +1,7 @@
 package emailauth;
-
 import java.io.IOException;
+
+
 import java.io.PrintWriter;
 
 import javax.mail.MessagingException;
@@ -14,6 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+
+
 @WebServlet("/EmailSendingServlet2")
 public class EmailSendingServlet2 extends HttpServlet
 {
@@ -22,19 +25,22 @@ public class EmailSendingServlet2 extends HttpServlet
 	private String port;
 	private String user;
 	private String pass;
+
 	
 	@Override
 	public void init() throws ServletException
 	{
 		// TODO Auto-generated method stub
 		//super.init();
-		
 		ServletContext context = getServletContext();
 		host = context.getInitParameter("host");
 		port = context.getInitParameter("port");
 		user = context.getInitParameter("user");
 		pass = context.getInitParameter("pass");
+	
 	}
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
@@ -47,7 +53,7 @@ public class EmailSendingServlet2 extends HttpServlet
 		Object recipient = req.getAttribute("e1");
 		String data = (String) recipient;
 		
-String subject = "Welcome to artist painting Shopping Project";
+		String subject = "Welcome to Artist-ManiaE Painting Shopping Project";
 		
 		HttpSession sess = req.getSession();
 		
@@ -56,22 +62,17 @@ String subject = "Welcome to artist painting Shopping Project";
 		int n3 = (int) sess.getAttribute("n3");
 		int n4 = (int) sess.getAttribute("n4");
 		
-		String content = "Welcome to artist mania Website Here you can purchase your Valuable Products Your Verification OTP is "+n1+n2+n3+n4;
-		//System.out.println(recipient);
-		//System.out.println(recipient);
-	
+		
+		
+		
+		String content = "Welcome to Artist-Mania Website Here you can purchase your Valuable Products Your Verification OTP is "+n1+n2+n3+n4;
+		//System.out.println(recipient);	
 		try 
 		{
 			EmailUtility.sendEmail(host, port, user, pass, data, subject,content);
 		
 			Thread.sleep(3000);
-			
-			//RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
-			//req.setAttribute("fname","abcd");
-			//rd.forward(req, resp);
-			//resp.sendRedirect("otpverify.jsp");
-			
-			
+
 			resp.sendRedirect("otpsend.jsp");
 		} 
 		catch (AddressException e) 

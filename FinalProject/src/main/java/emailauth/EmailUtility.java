@@ -1,7 +1,8 @@
-package emailauth;
 
+package emailauth;
 import java.util.Date;
 import java.util.Properties;
+ 
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -26,7 +27,6 @@ public class EmailUtility
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-
 //        properties.put("mail.smtp.host", host);
 //        properties.put("mail.smtp.port", port);
 //        properties.put("mail.smtp.auth", "true");
